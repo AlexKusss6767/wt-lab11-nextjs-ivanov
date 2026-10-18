@@ -1,3 +1,6 @@
+import Link from "next/link";
+import ProductCard from "../components/ProductCard"; 
+
 type Product = {
   id: number;
   name: string;
@@ -17,12 +20,17 @@ export default async function Products() {
   return (
     <main style={{ padding: '20px' }}>
       <h1>Товары (из API)</h1>
+      
       {products.map((product) => (
         <article key={product.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px 0' }}>
           <h2>{product.name}</h2>
           <p>Цена: {product.price} BYN</p>
+          <Link href={`/products/${product.id}`} style={{ color: 'blue', textDecoration: 'underline' }}>
+            Посмотреть подробнее
+          </Link>
         </article>
       ))}
+      
     </main>
   );
 }
